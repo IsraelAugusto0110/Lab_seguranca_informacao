@@ -91,7 +91,7 @@ function App() {
             style={{ width: 500, marginBottom: 15 }}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Typography style={{ margin: 15 }}>
+          <Typography style={{ margin: 5 }}>
             Gostaria de receber emails com atualizações e novidades?
           </Typography>
           <Typography style={{ margin: 5 }}>
