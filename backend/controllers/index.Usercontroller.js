@@ -28,7 +28,7 @@ const createUser = async (req, res) => {
   const sql =
     'INSERT INTO usuario("nome", \
         "email", \
-        "senha", \
+        "senha") \
         values($1, $2, $3)';
   const response = await pool.query(sql, [nome, email, senha]);
   res.json({
