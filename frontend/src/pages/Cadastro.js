@@ -11,12 +11,13 @@ import {
   Typography,
 } from "@mui/material";
 import { Container } from "@mui/system";
+import apiUser from "../services/api-user";
 
 export default function Cadastro() {
   const [email, setEmail] = React.useState("");
   const [aceitaEmail, setAceitaEmail] = React.useState(false);
   const [nome, setNome] = useState("");
-  const [password, setPassword] = useState("");
+  const [senha, setSenha] = useState("");
 
   const handleCadastro = () => {
     console.log(
@@ -28,6 +29,22 @@ export default function Cadastro() {
 
   const handleChangeAceito = () => {
     setAceitaEmail(!aceitaEmail);
+  };
+
+  const cadastro = (e) => {
+    e.preventDefault();
+    const body = {
+      nome: nome,
+      email: email,
+      senha: senha,
+    };
+    apiUser
+      .criar(body)
+      .then((res) => {
+        console.log(res);
+        console.log("Usuario adicionado");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -57,7 +74,7 @@ export default function Cadastro() {
             label="Insira uma senha forte"
             placeholder="password"
             style={{ width: 500, marginBottom: 15 }}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setSenha(e.target.value)}
           />
           <Typography style={{ margin: 5 }}>
             Gostaria de receber emails com atualizações e novidades?
@@ -77,7 +94,7 @@ export default function Cadastro() {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => handleCadastro()}
+            onClick={(e) => cadastro(e)}
           >
             Enviar
           </Button>

@@ -82,7 +82,7 @@ const login = async (req, res) => {
   console.log(response.rows);
 
   res.json({
-    message: "ok",
+    message: `Usuário: ${email} logado com sucesso`,
     body: {
       usuario: {
         email,
