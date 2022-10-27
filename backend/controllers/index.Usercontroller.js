@@ -25,12 +25,13 @@ const createUser = async (req, res) => {
   const nome = req.body.nome;
   const email = req.body.email;
   const senha = req.body.senha;
+  const aceitaEmail = req.body.aceitaEmail;
   const sql =
     'INSERT INTO usuario("nome", \
         "email", \
-        "senha") \
-        values($1, $2, $3)';
-  const response = await pool.query(sql, [nome, email, senha]);
+        "senha", "aceitaEmail") \
+        values($1, $2, $3, $4)';
+  const response = await pool.query(sql, [nome, email, senha, aceitaEmail]);
   res.json({
     message: "ok",
     body: {
@@ -38,6 +39,7 @@ const createUser = async (req, res) => {
         nome,
         email,
         senha,
+        aceitaEmail,
       },
     },
   });
@@ -48,6 +50,7 @@ const updateUser = async (req, res) => {
   const nome = req.body.nome;
   const email = req.body.email;
   const senha = req.body.senha;
+
   const sql =
     'UPDATE usuario SET "nome" = $1, "email" = $2, "senha" = $3, WHERE "id" = $4';
   const response = await pool.query(sql, [nome, email, senha, id]);

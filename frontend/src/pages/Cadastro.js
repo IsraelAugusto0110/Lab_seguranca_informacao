@@ -37,6 +37,7 @@ export default function Cadastro() {
       nome: nome,
       email: email,
       senha: senha,
+      aceitaEmail: aceitaEmail ? "Sim" : "Não",
     };
     apiUser
       .criar(body)
