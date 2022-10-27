@@ -73,10 +73,29 @@ const deleteUser = async (req, res) => {
   res.json(`Usuario id: ${id} deleted from database`);
 };
 
+const login = async (req, res) => {
+  const email = req.body.email;
+  const senha = req.body.senha;
+  const sql = 'SELECT * from usuario where "email" = $1 and "senha" = $2';
+  const response = await pool.query(sql, [email, senha]);
+
+  console.log(response.rows);
+
+  res.json({
+    message: "ok",
+    body: {
+      usuario: {
+        email,
+      },
+    },
+  });
+};
+
 module.exports = {
   getUsers,
   getUserById,
   createUser,
   deleteUser,
   updateUser,
+  login,
 };
