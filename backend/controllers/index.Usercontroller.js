@@ -25,13 +25,13 @@ const createUser = async (req, res) => {
   const nome = req.body.nome;
   const email = req.body.email;
   const senha = req.body.senha;
-  const aceitaEmail = req.body.aceitaEmail;
+  const aceitaemail = req.body.aceitaemail;
   const sql =
     'INSERT INTO usuario("nome", \
         "email", \
-        "senha", "aceitaEmail") \
+        "senha", "aceitaemail") \
         values($1, $2, $3, $4)';
-  const response = await pool.query(sql, [nome, email, senha, aceitaEmail]);
+  const response = await pool.query(sql, [nome, email, senha, aceitaemail]);
   res.json({
     message: "ok",
     body: {
@@ -39,7 +39,7 @@ const createUser = async (req, res) => {
         nome,
         email,
         senha,
-        aceitaEmail,
+        aceitaemail,
       },
     },
   });

@@ -15,20 +15,20 @@ import apiUser from "../services/api-user";
 
 export default function Cadastro() {
   const [email, setEmail] = React.useState("");
-  const [aceitaEmail, setAceitaEmail] = React.useState(false);
+  const [aceitaemail, setAceitaEmail] = React.useState(false);
   const [nome, setNome] = useState("");
   const [senha, setSenha] = useState("");
 
   const handleCadastro = () => {
     console.log(
       `Nome: ${nome}\nEmail: ${email}\nAceita emails?: ${
-        aceitaEmail ? "Sim" : "Não"
+        aceitaemail ? "Sim" : "Não"
       }`
     );
   };
 
   const handleChangeAceito = () => {
-    setAceitaEmail(!aceitaEmail);
+    setAceitaEmail(!aceitaemail);
   };
 
   const cadastro = (e) => {
@@ -37,7 +37,7 @@ export default function Cadastro() {
       nome: nome,
       email: email,
       senha: senha,
-      aceitaEmail: aceitaEmail ? "Sim" : "Não",
+      aceitaemail: aceitaemail ? "Sim" : "Não",
     };
     apiUser
       .criar(body)
