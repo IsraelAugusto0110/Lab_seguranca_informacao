@@ -94,6 +94,12 @@ const login = async (req, res) => {
   });
 };
 
+const selectEmail = async (req, res) => {
+  const sql = `select * from usuario where "aceitaemail" = 'Sim'`;
+  const response = await pool.query(sql);
+  console.log(response.rows);
+};
+
 module.exports = {
   getUsers,
   getUserById,
@@ -101,4 +107,5 @@ module.exports = {
   deleteUser,
   updateUser,
   login,
+  selectEmail,
 };
