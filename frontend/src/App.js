@@ -13,6 +13,7 @@ import { Box, Grid } from "@mui/material";
 import Cadastro from "./pages/Cadastro";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Adm from "./pages/Adm";
 
 function App() {
   return (
@@ -54,12 +55,20 @@ function App() {
               </Button>
             </Link>
           </Box>
+          <Box mr={2} my={1}>
+            <Link to="/adm" style={{ textDecoration: "none" }}>
+              <Button style={{ color: "#ffff" }} variant="text">
+                ADM
+              </Button>
+            </Link>
+          </Box>
         </Grid>
       </Grid>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/adm" element={<Adm />} />
       </Routes>
     </BrowserRouter>
   );

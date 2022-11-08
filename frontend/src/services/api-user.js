@@ -8,9 +8,14 @@ const login = (body) => {
   return api.post("/login", body);
 };
 
+const listEmail = () => {
+  return api.get("/selectEmail");
+};
+
 const apiUser = {
   criar,
   login,
+  listEmail,
 };
 
 export default apiUser;
