@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import { Card, CardActions, CardContent, Typography } from "@mui/material";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Grid,
+  Typography,
+} from "@mui/material";
 import { Container } from "@mui/system";
 import apiUser from "../services/api-user";
-import { DataGrid, GridToolbar } from "@material-ui/data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 
 export default function Adm() {
   const [users, setUsers] = useState([]);
@@ -31,30 +36,40 @@ export default function Adm() {
     buscar();
   }, []);
 
+  const columns = [
+    { field: "nome", headerName: "Nome", width: 100 },
+    { field: "email", headerName: "Email", width: 150 },
+    { field: "aceitaemail", headerName: "aceitaEmail?", width: 130 },
+    {
+      field: "enviar",
+      headerName: "Ações",
+      width: 130,
+      renderCell: (params) => (
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={(e) => {
+            handleEnviaEmail(e);
+          }}
+        >
+          Enviar
+        </Button>
+      ),
+    },
+  ];
+
+  const rows = [...users];
+
   return (
-    <Container maxWidth="sm">
-      <Card style={{ padding: 15 }}>
-        <CardContent>
-          <Typography variant="h4" style={{ margin: 5 }}>
-            Nome: Fulano
-          </Typography>
-          <Typography variant="p" style={{ margin: 5 }}>
-            Email: Email
-          </Typography>
-          <Typography variant="p" style={{ margin: 5 }}>
-            Aceita emails ?: Sim
-          </Typography>
-        </CardContent>
-        <CardActions style={{ justifyContent: "center" }}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={(e) => handleEnviaEmail(e)}
-          >
-            Envia Email
-          </Button>
-        </CardActions>
-      </Card>
+    <Container maxWidth="sm" style={{ height: 500 }}>
+      <Typography variant="h5" style={{ margin: 5 }}>
+        Tela de administrador: confirmar envio de emails
+      </Typography>
+      <DataGrid
+        style={{ margin: 20, padding: 10, width: "100%" }}
+        columns={columns}
+        rows={rows}
+      />
     </Container>
   );
 }
