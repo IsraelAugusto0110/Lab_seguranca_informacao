@@ -114,14 +114,14 @@ const enviaEmail = async (req, res) => {
     service: "outlook",
 
     auth: {
-      user: "israel.santos13@fatec.sp.gov.br",
+      user: "emailremetente",
 
-      pass: "Rhb#W35W2",
+      pass: "senha",
     },
   });
 
   var emailASerEnviado = {
-    from: "israel.santos13@fatec.sp.gov.br",
+    from: "remetente",
     to: email,
     subject: "email enviado com nodeemail",
     text: "teste",
