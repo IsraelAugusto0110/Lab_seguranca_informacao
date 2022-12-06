@@ -1,4 +1,7 @@
 const { Pool } = require("pg");
+// envia email
+var nodemailer = require("nodemailer");
+
 const pool = new Pool({
   user: "postgres",
   host: "localhost",
@@ -100,6 +103,35 @@ const selectEmail = async (req, res) => {
   res.status(200).json(response.rows);
 };
 
+const enviaEmail = async (req, res) => {
+  const email = req.body.email;
+  // email
+  var remetente = nodemailer.createTransport({
+    service: "outlook",
+
+    auth: {
+      user: "israel.santos13@fatec.sp.gov.br",
+
+      pass: "Rhb#W35W2",
+    },
+  });
+
+  var emailASerEnviado = {
+    from: "israel.santos13@fatec.sp.gov.br",
+    to: email,
+    subject: "email enviado com nodeemail",
+    text: "teste",
+  };
+
+  remetente.sendMail(emailASerEnviado, function (error) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("email enviado");
+    }
+  });
+};
+
 module.exports = {
   getUsers,
   getUserById,
@@ -108,4 +140,5 @@ module.exports = {
   updateUser,
   login,
   selectEmail,
+  enviaEmail,
 };

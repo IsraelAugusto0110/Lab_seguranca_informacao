@@ -10,6 +10,7 @@ const {
   updateUser,
   login,
   selectEmail,
+  enviaEmail,
 } = require("../controllers/index.Usercontroller");
 
 router.get("/listarUsuarios", getUsers);
@@ -19,5 +20,6 @@ router.put("/updateUsuario/:id", updateUser);
 router.delete("/deleteUsuario/:id", deleteUser);
 router.post("/login", login);
 router.get("/selectEmail", selectEmail);
+router.post("/email", enviaEmail);
 
 module.exports = router;
