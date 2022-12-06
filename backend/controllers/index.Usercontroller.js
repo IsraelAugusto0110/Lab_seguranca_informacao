@@ -1,5 +1,5 @@
 const { Pool } = require("pg");
-// envia email
+// o modulo nodemail é utilizado para envio de emails de forma mais simples
 var nodemailer = require("nodemailer");
 
 const pool = new Pool({
@@ -103,9 +103,13 @@ const selectEmail = async (req, res) => {
   res.status(200).json(response.rows);
 };
 
+// função recebe o email do destinatario
+// cria um remetente com os dados do servico
+// cria um objeto com o email que sera enviado
+// envia o email
 const enviaEmail = async (req, res) => {
   const email = req.body.email;
-  // email
+
   var remetente = nodemailer.createTransport({
     service: "outlook",
 
